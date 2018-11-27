@@ -24,3 +24,7 @@ Thermostat.prototype.current_usage = function() {
   else if (this.temperature < 25)  { return "medium-usage"; }
   else { return "high-usage"; }
 };
+
+Thermostat.prototype.toggle_power_saving = function() {
+  if (this.power_saving) { this.power_saving = false; } else { this.power_saving = true; }
+};

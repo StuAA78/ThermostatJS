@@ -2,15 +2,45 @@
 
 <head>
   <script src="thermostat.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" 
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" 
+  crossorigin="anonymous"></script>
+  <script>
+    thermostat = new Thermostat();
+    $(document).ready(function() {
+      $("#temp_display").text(thermostat.temperature);
+      $("#temp_up").click(function() {
+        thermostat.up();
+      });
+      $("#temp_down").click(function() {
+        thermostat.down();
+      });
+      $("#power_saving").click(function() {
+        thermostat.toggle_power_saving();
+        if (thermostat.power_saving) { $("#power_saving").text("Power saving is on"); }
+        else { $("#power_saving").text("Power saving is off"); }
+      });
+      $("#reset").click(function() {
+        thermostat.reset();
+      });
+      $(document).on( "click", function () {
+        $("#temp_display").text(thermostat.temperature);
+        if (thermostat.current_usage() === "low-usage") { $("#power_usage").css("background-color", "#00ff00"); }
+        else if (thermostat.current_usage() === "medium-usage") { $("#power_usage").css("background-color", "#ff8800"); }
+        else if (thermostat.current_usage() === "high-usage") { $("#power_usage").css("background-color", "#ff0000"); }
+      });
+    });
+  </script>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
 <p id="temp_display">[temp_display]</p>
 <button type="button" id="temp_up">Temperature up</button>
 <button type="button" id="temp_down">Temperature down</button>
-<button type="button" id="power_saving">Power saving on</button>
+<button type="button" id="power_saving">Power saving is on</button>
 <button type="button" id="reset">Reset</button>
-<div id="power_usage">[power_usage]</div>
+<div id="power_usage"></div>
 </body>
 
 </html>

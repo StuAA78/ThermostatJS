@@ -1,0 +1,8 @@
+#temp_display {
+  font-size: 30px;  
+}
+#power_usage {
+  height: 100px;
+  width: 100px;
+  background-color: #ff8800
+}

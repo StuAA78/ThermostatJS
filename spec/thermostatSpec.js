@@ -62,5 +62,11 @@ describe('ThermostatJS', function() {
       }
       expect(thermostat.current_usage()).toEqual("high-usage");
     });
+    it('toggles the the power saving variable', function () {
+      thermostat.toggle_power_saving();
+      expect(thermostat.power_saving).toEqual(false);
+      thermostat.toggle_power_saving();
+      expect(thermostat.power_saving).toEqual(true);
+    });
   });
 });
