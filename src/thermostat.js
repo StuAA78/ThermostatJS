@@ -4,15 +4,15 @@ function Thermostat() {
   this.power_saving = true;
 }
 
-Thermostat.prototype.up = function(temp) {
+Thermostat.prototype.up = function() {
   var max_temp;
-  if (this.power_saving) { max_temp = 25; } 
+  if (this.power_saving) { max_temp = 25; }
   else { max_temp = 32; }
-  this.temperature + temp < max_temp ? this.temperature += temp : this.temperature = max_temp;
+  this.temperature + 1 < max_temp ? this.temperature += 1 : this.temperature = max_temp;
 };
 
-Thermostat.prototype.down = function(temp) {
-  this.temperature - temp > 10 ? this.temperature -= temp : this.temperature = 10;
+Thermostat.prototype.down = function() {
+  this.temperature - 1 > 10 ? this.temperature -= 1 : this.temperature = 10;
 };
 
 Thermostat.prototype.reset = function() {
@@ -20,7 +20,7 @@ Thermostat.prototype.reset = function() {
 };
 
 Thermostat.prototype.current_usage = function() {
-  if (this.temperature < 18) { return "low-usage"; } 
+  if (this.temperature < 18) { return "low-usage"; }
   else if (this.temperature < 25)  { return "medium-usage"; }
   else { return "high-usage"; }
 };
